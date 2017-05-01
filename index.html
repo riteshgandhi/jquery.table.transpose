@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/scripts/jquery.table.transpose.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:50%">
+        <tr>
+            <th>
+                Transpose Vertical
+            </th>
+            <th>
+                Transpose Horizontal
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <button id="btnTpVertical">Transpose</button>
+            </th>
+            <th>
+                <button id="btnTpHorizontal">Transpose</button>
+            </th>
+        </tr>
+        <tr>
+            <td style="width:50%; border-right-style:solid">
+                <table id="table1" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;text-align:left">Name</th>
+                            <th style="width:50%;text-align:left">Telephone</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Bill Gates</td>
+                        <td>555 77 854</td>
+                    </tr>
+                    <tr>
+                        <td>Steve Jobs</td>
+                        <td>888 99 222</td>
+                    </tr>
+                    <tr>
+                        <td>Mark Zuckerberg</td>
+                        <td>777 88 999</td>
+                    </tr>
+                </table>
+            </td>
+
+            <td style="width:50%">
+                <table id="table2" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <th style="width:25%;text-align:left">Name</th>
+                            <td style="width:25%">Test1</td>
+                            <td style="width:25%">Test2</td>
+                            <td style="width:25%">Test3</td>
+                        </tr>
+                        <tr>
+                            <th style="width:25%;text-align:left">Address</th>
+                            <td style="width:25%">Address 1</td>
+                            <td style="width:25%">Address 2</td>
+                            <td style="width:25%">Address 3</td>
+                        </tr>
+                        <tr>
+                            <th style="width:25%;text-align:left">Zip</th>
+                            <td style="width:25%">12345</td>
+                            <td style="width:25%">67890</td>
+                            <td style="width:25%">88888</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(function () {
+            //initialize
+            if (!$("#table1").is(":blk-transpose"))
+                $("#table1").transpose({ mode: 0 });
+
+            if (!$("#table2").is(":blk-transpose"))
+                $("#table2").transpose({ mode: 1});
+        });
+
+        $("#btnTpVertical").click(function () {
+            var currentMode = $("#table1").data("tp_mode");
+            if (currentMode == undefined) {
+                $("#table1").transpose("transpose");
+                $("#btnTpVertical").html("Reset");
+            }
+            else {
+                $("#table1").transpose("reset");
+                $("#btnTpVertical").html("Transpose");
+            }
+        });
+
+        $("#btnTpHorizontal").click(function () {
+            var currentMode = $("#table2").data("tp_mode");
+            if (currentMode == undefined) {
+                $("#table2").transpose("transpose");
+                $("#btnTpHorizontal").html("Reset");
+            }
+            else {
+                $("#table2").transpose("reset");
+                $("#btnTpHorizontal").html("Transpose");
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
